@@ -81,7 +81,7 @@ prop_getIndex :: Int -> Bool
 prop_getIndex n = getPrime m == (getPrime . getIndex . getPrime) m
     where m = abs n
 
--- -- | These two properties show that the enumeration associated with Prime is isomorphic.
+-- | These two properties show that the enumeration associated with Prime is isomorphic.
 
 prop_fromEnum :: Prime Int -> Bool
 prop_fromEnum p = p == (toEnum . fromEnum) p
