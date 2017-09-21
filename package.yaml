@@ -1,6 +1,13 @@
 name: 'primes-type'
 version: '0.1.0.0'
-license: UnspecifiedLicense
+category: Algorithms, Numerical
+author: Ignat Insarov
+maintainer: kindaro@gmail.com
+copyright: 2017 Ignat Insarov
+license: ISC
+github: kindaro/primes-type
+synopsis: Type-safe prime numbers.
+description: This library provides type safe prime numbers. The idea is based upon the concept of a predicate type from type theory.
 library:
     source-dirs: src
     exposed-modules: Data.Numbers.Primes.Type
@@ -16,7 +23,7 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - base
+    - base >=4.5 && <5
     - primes
     - primes-type
     - HTF
