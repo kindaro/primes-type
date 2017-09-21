@@ -29,44 +29,44 @@ prop_maybePrime_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_maybeP
   where prop_maybePrime_Int' :: Int -> Bool
         prop_maybePrime_Int' x = r == Just x || r == Nothing
           where r :: Integral int => Maybe int
-                r = unPrime <$> maybePrime x
+                r = getValue <$> maybePrime x
 
 prop_maybePrime_Integer = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_maybePrime_Integer'
   where prop_maybePrime_Integer' :: Integer -> Bool
         prop_maybePrime_Integer' x = r == Just x || r == Nothing
           where r :: Integral int => Maybe int
-                r = unPrime <$> maybePrime x
+                r = getValue <$> maybePrime x
 
 prop_maybePrime_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_maybePrime_Word'
   where prop_maybePrime_Word' :: Word8 -> Bool
         prop_maybePrime_Word' x = r == Just x || r == Nothing
           where r :: Integral int => Maybe int
-                r = unPrime <$> maybePrime x
+                r = getValue <$> maybePrime x
 
--- prop_unPrime :: Integral int => int -> Bool -- ^ This is too general to suit a prop.
+-- prop_getValue :: Integral int => int -> Bool -- ^ This is too general to suit a prop.
 
-prop_unPrime_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_unPrime_Int'
+prop_getValue_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue_Int'
     where
-    prop_unPrime_Int' :: Int -> Bool
-    prop_unPrime_Int' n = (maybePrime . unPrime $ p) == Just p
+    prop_getValue_Int' :: Int -> Bool
+    prop_getValue_Int' n = (maybePrime . getValue $ p) == Just p
         where
         p :: Prime Int
         p | n < 0 = getPrime . abs $ n -- I know it's not super bright.
           | otherwise = getPrime n
 
-prop_unPrime_Integer = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_unPrime_Integer'
+prop_getValue_Integer = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue_Integer'
     where
-    prop_unPrime_Integer' :: Integer -> Bool
-    prop_unPrime_Integer' n = (maybePrime . unPrime $ p) == Just p
+    prop_getValue_Integer' :: Integer -> Bool
+    prop_getValue_Integer' n = (maybePrime . getValue $ p) == Just p
         where
         p :: Prime Integer
         p | n < 0 = getPrime . abs $ n -- I know it's not super bright.
           | otherwise = getPrime n
 
-prop_unPrime_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_unPrime_Word'
+prop_getValue_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_getValue_Word'
     where
-    prop_unPrime_Word' :: Word8 -> Bool
-    prop_unPrime_Word' n = (maybePrime . unPrime $ p) == Just p
+    prop_getValue_Word' :: Word8 -> Bool
+    prop_getValue_Word' n = (maybePrime . getValue $ p) == Just p
         where
         p :: Prime Word8
         p = getPrime n
