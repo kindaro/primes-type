@@ -1,5 +1,5 @@
 module Data.Numbers.Primes.Type
-    (Prime
+    ( Prime
     , getValue
     , getIndex
     , primeIndex
