@@ -9,6 +9,8 @@ module Data.Numbers.Primes.Type
 
 import Data.List (elemIndex)
 import Data.Numbers.Primes
+import Control.Timeout
+import System.IO.Unsafe
 
 data Prime int = Prime { getValue :: int, getIndex :: Int } deriving Show
 
@@ -35,3 +37,5 @@ getPrime n = Prime (primes !! fromIntegral n) (fromIntegral n)
 maybePrime :: (Integral n, Integral int) => n -> Maybe (Prime int)
 maybePrime x | isPrime x = Prime (fromIntegral x) <$> primeIndex x
              | otherwise = Nothing
+
+timeoutUnsafe f t = unsafePerformIO . timeout t . return $ f
