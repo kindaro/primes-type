@@ -10,12 +10,17 @@ module Data.Numbers.Primes.Type
 import Data.List (elemIndex)
 import Data.Numbers.Primes
 
-data Prime int = Prime { getValue :: int, getIndex :: Int } deriving (Eq, Ord, Show)
-    -- TODO: Fix eq, ord, ... to work with getIndex and num, real to work with unPrime.
+data Prime int = Prime { getValue :: int, getIndex :: Int } deriving Show
 
 instance Integral int => Enum (Prime int) where
     toEnum = getPrime
     fromEnum = getIndex
+
+instance Eq (Prime int) where
+    x == y = getIndex x == getIndex y
+
+instance Ord (Prime int) where
+    x `compare` y = getIndex x `compare` getIndex y
 
 -- | If a given number is prime, give its index.
 primeIndex :: (Integral n, Integral i) => n -> Maybe i
