@@ -1,5 +1,10 @@
 module Data.Numbers.Primes.Type
-    (Prime(), primeIndex, getPrime, getValue, maybePrime, getIndex
+    (Prime
+    , getValue
+    , getIndex
+    , primeIndex
+    , getPrime
+    , maybePrime
     ) where
 
 import Data.List (elemIndex)
