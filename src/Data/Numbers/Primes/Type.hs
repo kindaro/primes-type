@@ -1,11 +1,11 @@
 module Data.Numbers.Primes.Type
-    (Prime(), primeIndex, getPrime, unPrime, maybePrime, getIndex
+    (Prime(), primeIndex, getPrime, getValue, maybePrime, getIndex
     ) where
 
 import Data.List (elemIndex)
 import Data.Numbers.Primes
 
-data Prime int = Prime { unPrime :: int, getIndex :: Int } deriving (Eq, Ord, Show)
+data Prime int = Prime { getValue :: int, getIndex :: Int } deriving (Eq, Ord, Show)
     -- TODO: Fix eq, ord, ... to work with getIndex and num, real to work with unPrime.
 
 instance Integral int => Enum (Prime int) where
