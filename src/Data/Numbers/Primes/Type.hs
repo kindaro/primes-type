@@ -8,6 +8,7 @@ module Data.Numbers.Primes.Type
     , primeIndex
     , getPrime
     , maybePrime
+    , indexedPrimes
     ) where
 
 import Data.List (elemIndex)
