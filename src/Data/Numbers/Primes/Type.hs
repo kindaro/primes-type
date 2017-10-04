@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -funbox-strict-fields #-}
+
 module Data.Numbers.Primes.Type
     ( Prime
     , getValue
@@ -10,7 +12,7 @@ module Data.Numbers.Primes.Type
 import Data.List (elemIndex)
 import Data.Numbers.Primes
 
-data Prime int = Prime { getValue :: int, getIndex :: Int } deriving Show
+data Prime int = Prime { getValue :: int, getIndex :: !Int } deriving Show
 
 instance Integral int => Enum (Prime int) where
     toEnum = getPrime
