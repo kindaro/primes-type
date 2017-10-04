@@ -4,6 +4,7 @@ module Data.Numbers.Primes.Type
     ( Prime
     , getValue
     , getIndex
+    , deconstruct
     , primeIndex
     , getPrime
     , maybePrime
@@ -24,6 +25,10 @@ getValue = _value
 -- | Given a Prime, give back its index.
 getIndex :: Prime int -> Int
 getIndex = _index
+
+-- | Given a Prime, give back its value and index as a tuple.
+deconstruct :: Prime int -> (int, Int)
+deconstruct p = (_value p, _index p)
 
 instance Integral int => Enum (Prime int) where
     toEnum = getPrime
