@@ -69,16 +69,24 @@ prop_fromEnum :: Prime Int -> Bool
 prop_fromEnum p = p == (toEnum . fromEnum) p
 
 prop_toEnum :: Int -> Bool
-prop_toEnum n = n == (fromEnum . (toEnum :: Int -> Prime Int)) n
+prop_toEnum n' = n == (fromEnum . (toEnum :: Int -> Prime Int)) n
+  where
+    n = abs n'
 
 -- | Equality & ordering of primes is the same as the respective relations on their indices.
 
 prop_Eq = withQCArgs (\prop -> prop { maxSize = 256 } ) prop_Eq'
   where
     prop_Eq' :: (Int, Int) -> Bool
-    prop_Eq' (i, j) = (i == j) == (getPrime i == getPrime j)
+    prop_Eq' (i', j') = (i == j) == (getPrime i == getPrime j)
+      where
+        i = abs i'
+        j = abs j'
 
 prop_compare = withQCArgs (\prop -> prop { maxSize = 256 } ) prop_compare'
   where
     prop_compare' :: (Int, Int) -> Bool
-    prop_compare' (i, j) = i `compare` j == (getPrime i `compare` getPrime j)
+    prop_compare' (i', j') = i `compare` j == (getPrime i `compare` getPrime j)
+      where
+        i = abs i'
+        j = abs j'
