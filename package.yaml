@@ -12,7 +12,7 @@ library:
     source-dirs: src
     exposed-modules: Data.Numbers.Primes.Type
     dependencies:
-    - base >=4.5 && <5
+    - base >=4.8 && <5
     - primes
 tests:
   primes-type-test:
@@ -23,7 +23,7 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - base >=4.5 && <5
+    - base >=4.8 && <5
     - primes
     - primes-type
     - HTF
