@@ -19,6 +19,7 @@ test_prime = do
     assertEqual (Just $ getPrime 5) (maybePrime 13)
     assertEqual (primeIndex 2) (Just 0)
     assertEqual (primeIndex 13) (Just 5)
+    assertEqual (maybePrime 4) (Nothing)
 
 -- | These two properties show that Prime and its value are
 --   isomorphic if and only if the value is prime.
