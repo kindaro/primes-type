@@ -25,8 +25,8 @@ instance Ord (Prime int) where
     x `compare` y = getIndex x `compare` getIndex y
 
 -- | If a given number is prime, give its index.
-primeIndex :: (Integral n, Integral i) => n -> Maybe i
-primeIndex x | isPrime x = fromIntegral <$> elemIndex x primes
+primeIndex :: Integral n => n -> Maybe Int
+primeIndex x | isPrime x = elemIndex x primes
              | otherwise = Nothing
 
 -- | Give n-th prime.
