@@ -12,7 +12,15 @@ module Data.Numbers.Primes.Type
 import Data.List (elemIndex)
 import Data.Numbers.Primes
 
-data Prime int = Prime { getValue :: int, getIndex :: !Int } deriving Show
+data Prime int = Prime { _value :: int, _index :: !Int } deriving Show
+
+-- | Given a Prime, give back its value.
+getValue :: Prime int -> int
+getValue = _value
+
+-- | Given a Prime, give back its index.
+getIndex :: Prime int -> Int
+getIndex = _index
 
 instance Integral int => Enum (Prime int) where
     toEnum = getPrime
