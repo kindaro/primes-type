@@ -45,10 +45,10 @@ prop_maybePrime_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_maybePri
                 r = getValue <$> maybePrime x
 
 prop_getValue_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue_Int'
-    where
+  where
     prop_getValue_Int' :: Int -> Bool
     prop_getValue_Int' n = (maybePrime . getValue $ p) == Just p
-        where
+      where
         p :: Prime Int
         p | n < 0 = getPrime . abs $ n -- I know it's not super bright.
           | otherwise = getPrime n
@@ -57,11 +57,11 @@ prop_getValue_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue
 
 prop_primeIndex :: Int -> Bool
 prop_primeIndex n = m == (getIndex <$> getPrime) m
-    where m = abs n
+  where m = abs n
 
 prop_getIndex :: Int -> Bool
 prop_getIndex n = getPrime m == (getPrime . getIndex . getPrime) m
-    where m = abs n
+  where m = abs n
 
 -- | These two properties show that the enumeration associated with Prime is isomorphic.
 
@@ -74,11 +74,11 @@ prop_toEnum n = n == (fromEnum . (toEnum :: Int -> Prime Int)) n
 -- | Equality & ordering of primes is the same as the respective relations on their indices.
 
 prop_Eq = withQCArgs (\prop -> prop { maxSize = 256 } ) prop_Eq'
-    where
+  where
     prop_Eq' :: (Int, Int) -> Bool
     prop_Eq' (i, j) = (i == j) == (getPrime i == getPrime j)
 
 prop_compare = withQCArgs (\prop -> prop { maxSize = 256 } ) prop_compare'
-    where
+  where
     prop_compare' :: (Int, Int) -> Bool
     prop_compare' (i, j) = i `compare` j == (getPrime i `compare` getPrime j)
