@@ -9,7 +9,6 @@ module Data.Numbers.Primes.Type
 
 import Data.List (elemIndex)
 import Data.Numbers.Primes
-import Control.Applicative ((<$>)) -- This is a compatibility measure.
 
 data Prime int = Prime { getValue :: int, getIndex :: Int } deriving Show
 
