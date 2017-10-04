@@ -96,3 +96,8 @@ prop_compare = withQCArgs (\prop -> prop { maxSize = 256 } ) prop_compare'
       where
         i = abs i'
         j = abs j'
+
+-- | The list of indexed primes corresponds to its unzips.
+test_indexedPrimes = assertEqual
+                        (deconstruct <$> take 100 indexedPrimes)
+                        (take 100 $ zip primes [0..])
