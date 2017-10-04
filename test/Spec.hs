@@ -29,19 +29,19 @@ test_prime = do
 prop_maybePrime_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_maybePrime_Int'
   where prop_maybePrime_Int' :: Int -> Bool
         prop_maybePrime_Int' x = r == Just x || r == Nothing
-          where r :: Integral int => Maybe int
+          where r :: Maybe Int
                 r = getValue <$> maybePrime x
 
 prop_maybePrime_Integer = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_maybePrime_Integer'
   where prop_maybePrime_Integer' :: Integer -> Bool
         prop_maybePrime_Integer' x = r == Just x || r == Nothing
-          where r :: Integral int => Maybe int
+          where r :: Maybe Integer
                 r = getValue <$> maybePrime x
 
 prop_maybePrime_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_maybePrime_Word'
   where prop_maybePrime_Word' :: Word8 -> Bool
         prop_maybePrime_Word' x = r == Just x || r == Nothing
-          where r :: Integral int => Maybe int
+          where r :: Maybe Word8
                 r = getValue <$> maybePrime x
 
 -- prop_getValue :: Integral int => int -> Bool -- ^ This is too general to suit a prop.
