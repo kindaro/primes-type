@@ -44,3 +44,7 @@ getPrime n = Prime (primes !! n) n
 -- | If a given number is prime, give it back wrapped as such.
 maybePrime :: (Integral int) => int -> Maybe (Prime int)
 maybePrime x = Prime x <$> primeIndex x
+
+-- | A list of indexed primes.
+indexedPrimes :: Integral int => [Prime int]
+indexedPrimes = getPrime <$> [0,1..]
