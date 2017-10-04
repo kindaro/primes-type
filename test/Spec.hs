@@ -44,8 +44,6 @@ prop_maybePrime_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_maybePri
           where r :: Maybe Word8
                 r = getValue <$> maybePrime x
 
--- prop_getValue :: Integral int => int -> Bool -- ^ This is too general to suit a prop.
-
 prop_getValue_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue_Int'
     where
     prop_getValue_Int' :: Int -> Bool
@@ -54,23 +52,6 @@ prop_getValue_Int = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue
         p :: Prime Int
         p | n < 0 = getPrime . abs $ n -- I know it's not super bright.
           | otherwise = getPrime n
-
-prop_getValue_Integer = withQCArgs (\prop -> prop { maxSize = 1024 } ) prop_getValue_Integer'
-    where
-    prop_getValue_Integer' :: Integer -> Bool
-    prop_getValue_Integer' n = (maybePrime . getValue $ p) == Just p
-        where
-        p :: Prime Integer
-        p | n < 0 = getPrime . abs $ n -- I know it's not super bright.
-          | otherwise = getPrime n
-
-prop_getValue_Word = withQCArgs (\prop -> prop { maxSize = 5 } ) prop_getValue_Word'
-    where
-    prop_getValue_Word' :: Word8 -> Bool
-    prop_getValue_Word' n = (maybePrime . getValue $ p) == Just p
-        where
-        p :: Prime Word8
-        p = getPrime n
 
 -- | These two properties show that Prime and its index are isomorphic.
 

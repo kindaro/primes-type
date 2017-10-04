@@ -30,8 +30,8 @@ primeIndex x | isPrime x = elemIndex x primes
              | otherwise = Nothing
 
 -- | Give n-th prime.
-getPrime :: (Integral n, Integral int) => n -> Prime int
-getPrime n = Prime (primes !! fromIntegral n) (fromIntegral n)
+getPrime :: Integral int => Int -> Prime int
+getPrime n = Prime (primes !! n) n
 
 -- | If a given number is prime, give it back wrapped as such.
 maybePrime :: (Integral int) => int -> Maybe (Prime int)
