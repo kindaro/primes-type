@@ -63,6 +63,12 @@ prop_getIndex :: Int -> Bool
 prop_getIndex n = getPrime m == (getPrime . getIndex . getPrime) m
   where m = abs n
 
+-- | This property verifies the correctness of `deconstruct`.
+
+prop_deconstruct i = deconstruct p == (getValue p, getIndex p)
+  where
+    p = getPrime (abs i)
+
 -- | These two properties show that the enumeration associated with Prime is isomorphic.
 
 prop_fromEnum :: Prime Int -> Bool
