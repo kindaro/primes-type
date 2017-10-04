@@ -12,6 +12,9 @@ module Data.Numbers.Primes.Type
 import Data.List (elemIndex)
 import Data.Numbers.Primes
 
+-- | An abstract type for primes.
+--
+--   It will only ever hold a valid prime, together with its zero-based index.
 data Prime int = Prime { _value :: !int, _index :: !Int } deriving Show
 
 -- | Given a Prime, give back its value.
