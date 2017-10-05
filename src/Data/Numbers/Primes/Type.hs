@@ -1,4 +1,6 @@
 {-# OPTIONS_GHC -funbox-strict-fields #-}
+{-# LANGUAGE StandaloneDeriving #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 module Data.Numbers.Primes.Type
     ( Prime
@@ -13,6 +15,8 @@ module Data.Numbers.Primes.Type
 
 import Data.List (elemIndex)
 import Data.Numbers.Primes
+import GHC.Generics
+import Control.DeepSeq
 
 -- | An abstract type for primes.
 --
@@ -40,6 +44,11 @@ instance Eq (Prime int) where
 
 instance Ord (Prime int) where
     x `compare` y = getIndex x `compare` getIndex y
+
+deriving instance Generic (Prime a)
+deriving instance Generic1 Prime
+instance NFData a => NFData (Prime a)
+instance NFData1 Prime
 
 -- | If a given number is prime, give its index.
 primeIndex :: Integral n => n -> Maybe Int
