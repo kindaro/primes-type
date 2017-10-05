@@ -16,7 +16,7 @@ import Data.Numbers.Primes
 
 -- | An abstract type for primes.
 --
---   It will only ever hold a valid prime, together with its zero-based index.
+--   It will only ever hold a valid prime, along with its zero-based index.
 data Prime int = Prime { _value :: !int, _index :: !Int } deriving Show
 
 -- | Given a Prime, give back its value.
@@ -41,7 +41,7 @@ instance Eq (Prime int) where
 instance Ord (Prime int) where
     x `compare` y = getIndex x `compare` getIndex y
 
--- | If a given number is prime, give its index.
+-- | If a given number is prime, give back its index.
 primeIndex :: Integral n => n -> Maybe Int
 primeIndex x | isPrime x = elemIndex x primes
              | otherwise = Nothing
@@ -54,6 +54,6 @@ getPrime n = Prime (primes !! n) n
 maybePrime :: (Integral int) => int -> Maybe (Prime int)
 maybePrime x = Prime x <$> primeIndex x
 
--- | A list of indexed primes.
+-- | List of indexed primes.
 indexedPrimes :: Integral int => [Prime int]
 indexedPrimes = getPrime <$> [0,1..]
