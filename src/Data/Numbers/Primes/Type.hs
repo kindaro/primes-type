@@ -46,9 +46,7 @@ instance Ord (Prime int) where
     x `compare` y = getIndex x `compare` getIndex y
 
 deriving instance Generic (Prime a)
-deriving instance Generic1 Prime
 instance NFData a => NFData (Prime a)
-instance NFData1 Prime
 
 -- | If a given number is prime, give back its index.
 primeIndex :: Integral n => n -> Maybe Int
